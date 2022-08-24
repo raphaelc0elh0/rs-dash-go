@@ -1,5 +1,5 @@
-import { Flex, Icon, Input, Text } from "@chakra-ui/react"
-import { RiSearch2Line } from "react-icons/ri"
+import { Flex, Icon, Input, HStack, Text, Box, Avatar } from "@chakra-ui/react"
+import { RiNotification2Line, RiSearch2Line, RiUser2Line } from "react-icons/ri"
 
 export const Header = () => {
   return (
@@ -33,6 +33,21 @@ export const Header = () => {
           _placeholder={{ color: "gray.400" }}
         />
         <Icon as={RiSearch2Line} fontSize="20" />
+      </Flex>
+      <Flex align="center" ml="auto">
+        <HStack spacing="8" mx="8" pr="8" py="1" color="gray.300" borderRightWidth={1} borderColor="gray.700">
+          <Icon as={RiNotification2Line} fontSize="20" />
+          <Icon as={RiUser2Line} fontSize="20" />
+        </HStack>
+        <Flex align="center">
+          <Box mr="4" textAlign="right">
+            <Text>Raphael Coelho</Text>
+            <Text color="gray.300" fontSize="small">
+              raphael_coelho@hotmail.com.br
+            </Text>
+          </Box>
+          <Avatar size="md" name="Raphael Coelho" src="https://github.com/raphaelc0elh0.png" />
+        </Flex>
       </Flex>
     </Flex>
   )
