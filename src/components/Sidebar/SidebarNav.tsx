@@ -9,6 +9,7 @@ interface SidebarNavProps {
     links: {
       label: string
       icon: IconType
+      href: string
     }[]
   }[]
 }
@@ -19,7 +20,7 @@ export const SidebarNav = ({ sections }: SidebarNavProps) => {
       {sections.map((section) => (
         <NavSection key={section.title} title={section.title}>
           {section.links.map((link) => (
-            <NavLink key={link.label} icon={link.icon}>
+            <NavLink key={link.label} icon={link.icon} href={link.href}>
               {link.label}
             </NavLink>
           ))}

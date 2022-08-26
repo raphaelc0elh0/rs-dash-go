@@ -16,15 +16,15 @@ const sections = [
   {
     title: "Geral",
     links: [
-      { label: "Dashboard", icon: RiDashboardLine },
-      { label: "Usuários", icon: RiContactsLine }
+      { label: "Dashboard", icon: RiDashboardLine, href: "/dashboard" },
+      { label: "Usuários", icon: RiContactsLine, href: "/users" }
     ]
   },
   {
     title: "Automação",
     links: [
-      { label: "Formulários", icon: RiInputMethodLine },
-      { label: "Automação", icon: RiGitMergeLine }
+      { label: "Formulários", icon: RiInputMethodLine, href: "/forms" },
+      { label: "Automação", icon: RiGitMergeLine, href: "/automation" }
     ]
   }
 ]

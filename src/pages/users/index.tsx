@@ -18,6 +18,7 @@ import { Header } from "../../components/Header"
 import { Sidebar } from "../../components/Sidebar"
 import { RiAddLine, RiPencilLine } from "react-icons/ri"
 import { Pagination } from "../../components/Pagination"
+import Link from "next/link"
 
 const users = [
   { id: "1", name: "Raphael Coelho", email: "raphael_coelho@hotmail.com.br", registeredAt: "04 de fevereiro, 2021" },
@@ -41,9 +42,17 @@ const UserList = () => {
             <Heading size="lg" fontWeight="normal">
               Usuários
             </Heading>
-            <Button as="a" size="sm" fontSize="sm" colorScheme="pink" leftIcon={<Icon as={RiAddLine} fontSize="20" />}>
-              Criar novo
-            </Button>
+            <Link href="/users/create" passHref>
+              <Button
+                as="a"
+                size="sm"
+                fontSize="sm"
+                colorScheme="pink"
+                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+              >
+                Criar novo
+              </Button>
+            </Link>
           </Flex>
           <Table colorScheme="whiteAlpha">
             <Thead>
