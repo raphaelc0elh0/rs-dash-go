@@ -21,28 +21,12 @@ import { RiAddLine, RiPencilLine } from "react-icons/ri"
 import { Pagination } from "../../components/Pagination"
 import Link from "next/link"
 import { useQuery } from "react-query"
-
-type User = {
-  id: string
-  name: string
-  email: string
-  createdAt: string
-}
+import { api } from "../../services/api"
+import { useUsers } from "../../services/hooks/useUsers"
 
 const UserList = () => {
   // query
-  const { data, isLoading, error } = useQuery<User[]>("users", async () => {
-    const response = await fetch("https://localhost:3000/api/users")
-    const data = await response.json()
-    return data.users.map((user: User) => ({
-      ...user,
-      createdAt: new Date(user.createdAt).toLocaleDateString("pt-BR", {
-        day: "2-digit",
-        month: "long",
-        year: "numeric"
-      })
-    }))
-  })
+  const { data, isLoading, isFetching, error } = useUsers()
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -58,6 +42,7 @@ const UserList = () => {
           <Flex mb="8" justify="space-between">
             <Heading size="lg" fontWeight="normal">
               Usuários
+              {!isLoading && isFetching && <Spinner size="sm" color="gray.500" ml="4" />}
             </Heading>
             <Link href="/users/create" passHref>
               <Button
