@@ -28,7 +28,7 @@ export const Pagination = ({
   return (
     <Stack direction={["column", "row"]} mt="8" spacing="6" justify="space-between" align="center">
       <Box>
-        <strong>0</strong> - <strong>10</strong> de <strong>100</strong> registros
+        <strong>0</strong> - <strong>10</strong> de <strong>{totalCountOfRegisters}</strong> registros
       </Box>
       <Stack direction="row" spacing="2">
         {currentPage > 1 + siblingsCount && (
