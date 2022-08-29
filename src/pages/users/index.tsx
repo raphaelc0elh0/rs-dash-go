@@ -23,10 +23,11 @@ import Link from "next/link"
 import { useQuery } from "react-query"
 import { api } from "../../services/api"
 import { useUsers } from "../../services/hooks/useUsers"
+import { useState } from "react"
 
 const UserList = () => {
-  // query
-  const { data, isLoading, isFetching, error } = useUsers()
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isFetching, error } = useUsers(page)
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -78,39 +79,38 @@ const UserList = () => {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data &&
-                    data.map((user) => (
-                      <Tr key={user.id}>
-                        <Td px={["4", "4", "6"]}>
-                          <Checkbox colorScheme="pink" />
-                        </Td>
+                  {data.users.map((user) => (
+                    <Tr key={user.id}>
+                      <Td px={["4", "4", "6"]}>
+                        <Checkbox colorScheme="pink" />
+                      </Td>
+                      <Td>
+                        <Box>
+                          <Text fontWeight="bold">{user.name}</Text>
+                          <Text fontSize="sm" color="gray.300">
+                            {user.email}
+                          </Text>
+                        </Box>
+                      </Td>
+                      {isWideVersion && <Td>{user.createdAt}</Td>}
+                      {isWideVersion && (
                         <Td>
-                          <Box>
-                            <Text fontWeight="bold">{user.name}</Text>
-                            <Text fontSize="sm" color="gray.300">
-                              {user.email}
-                            </Text>
-                          </Box>
+                          <Button
+                            as="a"
+                            size="sm"
+                            fontSize="sm"
+                            colorScheme="purple"
+                            leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
+                          >
+                            Editar
+                          </Button>
                         </Td>
-                        {isWideVersion && <Td>{user.createdAt}</Td>}
-                        {isWideVersion && (
-                          <Td>
-                            <Button
-                              as="a"
-                              size="sm"
-                              fontSize="sm"
-                              colorScheme="purple"
-                              leftIcon={<Icon as={RiPencilLine} fontSize="16" />}
-                            >
-                              Editar
-                            </Button>
-                          </Td>
-                        )}
-                      </Tr>
-                    ))}
+                      )}
+                    </Tr>
+                  ))}
                 </Tbody>
               </Table>
-              <Pagination />
+              <Pagination totalCountOfRegisters={data.totalCount} currentPage={page} onPageChange={setPage} />
             </>
           )}
         </Box>
